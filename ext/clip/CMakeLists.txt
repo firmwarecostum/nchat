@@ -64,7 +64,7 @@ else()
   list(APPEND CLIP_SOURCES clip_none.cpp)
 endif()
 
-add_library(clip ${CLIP_SOURCES})
+add_library(clip ${LIBRARY_LINKING_TYPE} ${CLIP_SOURCES})
 
 if(WIN32)
   target_link_libraries(clip shlwapi)
