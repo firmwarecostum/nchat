@@ -34,9 +34,8 @@ set(LIB "libcgowm${CMAKE_SHARED_LIBRARY_SUFFIX}")
 add_custom_command(OUTPUT ${OUTPUT_DIR}/${LIB}
   DEPENDS ${SRCS}
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-  COMMAND env GOPATH=${GOPATH} CGO_ENABLED=1 go build -buildmode=${BUILDMODE} ${CUSTOM_GO_FLAGS}
+  COMMAND env GOPATH=${GOPATH} CGO_ENABLED=1 go build -v -buildvcs=false -trimpath -ldflags "all=-buildid '1758316778' -linkmode external -extldflags '-L/home/runner/work/mosdns/mosdns/sdk/staging_dir/toolchain-aarch64_generic_gcc-13.3.0_musl/usr/lib'" -buildmode=pie ${CUSTOM_GO_FLAGS}
   -o "${OUTPUT_DIR}/${LIB}"
-  ${CMAKE_GO_FLAGS} ./...
   COMMENT "Building Go library")
 add_custom_target(${TARGET} DEPENDS ${OUTPUT_DIR}/${LIB} ${HEADER})
 
