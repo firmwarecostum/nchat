@@ -7,16 +7,6 @@ execute_process(COMMAND bash "-c" "go version | cut -c14- | cut -d' ' -f1 | tr -
 message(STATUS "Go version ${GO_VERSION}.")
 set(CUSTOM_GO_FLAGS -modcacherw -buildvcs=false)
 
-# Check Go package
-execute_process(COMMAND bash "-c" "go version | grep -v -q gccgo" RESULT_VARIABLE GO_GCC)
-if (GO_GCC EQUAL "1")
-  message(STATUS "Go gccgo.")
-  set(GO_LIBRARIES "go" PARENT_SCOPE)
-else ()
-  message(STATUS "Go golang.")
-  set(GO_LIBRARIES "" PARENT_SCOPE)
-endif ()
-
 # Config params
 if (HAS_STATICGOLIB)
   set(BUILDMODE c-archive)
